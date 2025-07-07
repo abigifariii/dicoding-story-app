@@ -1,1 +1,1 @@
-APP_URL=https://adelia-dicoding-story-app.netlify.app//
+APP_URL=https://dicodingstoryappfinal.netlify.app/
