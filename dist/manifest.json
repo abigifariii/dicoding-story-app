@@ -15,15 +15,15 @@
   ],
   "screenshots": [
     {
-      "src": "/screenshot/screenshot-desktop.png",
-      "sizes": "1280x720",
+      "src": "/images/screenshot/screenshot-desktop.png",
+      "sizes": "1920x1080",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Tampilan desktop halaman utama"
     },
     {
-      "src": "/screenshot/screenshot-mobile.png",
-      "sizes": "375x667",
+      "src": "/images/screenshot/screenshot-mobile.png",
+      "sizes": "750x1334",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Tampilan mobile halaman utama"
