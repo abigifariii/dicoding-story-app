@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const path = require("path")
 const WorkboxWebpackPlugin = require("workbox-webpack-plugin")
+const CopyWebpackPlugin = require("copy-webpack-plugin") // Import CopyWebpackPlugin
 
 module.exports = {
   entry: "./src/app.js",
@@ -38,7 +39,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       filename: "index.html",
-      // Inject manifest link
       inject: "body",
       templateParameters: {
         manifestLink: '<link rel="manifest" href="/manifest.json">',
@@ -48,7 +48,6 @@ module.exports = {
       swDest: "service-worker.js",
       clientsClaim: true,
       skipWaiting: true,
-      // Tambahkan atau ubah baris ini
       maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5 MB
       runtimeCaching: [
         {
@@ -97,6 +96,12 @@ module.exports = {
             },
           },
         },
+      ],
+    }),
+    // Tambahkan CopyWebpackPlugin di sini
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "public", to: "." }, // Menyalin semua konten dari folder 'public' ke root 'dist'
       ],
     }),
   ],
