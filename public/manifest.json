@@ -35,7 +35,7 @@
       "short_name": "Add",
       "description": "Share a new story",
       "url": "/#add-story",
-      "icons": [{ "src": "/images/icon.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/images/add-icon.png", "sizes": "96x96" }]
     },
     {
       "name": "View Stories",
