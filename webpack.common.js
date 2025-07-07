@@ -98,7 +98,7 @@ module.exports = {
         },
       ],
     }),
-    // Tambahkan CopyWebpackPlugin di sini
+   
     new CopyWebpackPlugin({
       patterns: [
         { from: "public", to: "." }, // Menyalin semua konten dari folder 'public' ke root 'dist'
