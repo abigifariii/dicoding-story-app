@@ -28,6 +28,7 @@
     "webpack-merge": "^5.9.0"
   },
   "dependencies": {
+    "copy-webpack-plugin": "^13.0.0",
     "leaflet": "^1.9.4",
     "workbox-webpack-plugin": "^7.3.0"
   }
