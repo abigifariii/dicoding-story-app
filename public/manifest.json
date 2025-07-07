@@ -64,5 +64,18 @@
       "url": "/#view-story",
       "icons": [{ "src": "/images/icon/icon-96x96.png", "sizes": "96x96" }]
     }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/screenshot/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/images/screenshot/screenshot-mobile.png",
+      "sizes": "375x667",
+      "type": "image/png"
+    }
   ]
 }
