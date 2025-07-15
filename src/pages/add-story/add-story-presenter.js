@@ -62,28 +62,37 @@ export class AddStoryPresenter {
   }
 
   async getCurrentLocation() {
-    try {
-      this.toastService.show("Detecting your location...", "info")
-      const { lat, lng } = await this.view.getCurrentLocation()
-      const userLocation = { lat, lng }
-
-      this.view.setMapView(lat, lng)
-      this.selectLocation(userLocation, "📍 Your current location") // Use selectLocation to manage single marker
-
-      this.toastService.show("Location detected successfully!", "success")
-    } catch (error) {
-      console.error("Geolocation error:", error)
-      let errorMessage = "Could not detect your location. "
-      if (error.code === 1) {
-        errorMessage += "Location access denied."
-      } else if (error.code === 2) {
-        errorMessage += "Location unavailable."
-      } else if (error.code === 3) {
-        errorMessage += "Location request timed out."
-      }
-      errorMessage += " Please select manually on the map."
-      this.toastService.show(errorMessage, "warning")
+    this.toastService.show("Detecting your location...", "info")
+    if (!navigator.geolocation) {
+      this.toastService.show("Geolocation is not supported by your browser. Please select manually on the map.", "warning")
+      return
     }
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude
+        const lng = position.coords.longitude
+        const userLocation = { lat, lng }
+        this.view.setMapView(lat, lng)
+        this.selectLocation(userLocation, "📍 Your current location")
+        this.toastService.show("Location detected successfully!", "success")
+      },
+      (error) => {
+        console.error("Geolocation error:", error)
+        let errorMessage = "Could not detect your location. "
+        if (error.code === 1) {
+          errorMessage += "Location access denied."
+        } else if (error.code === 2) {
+          errorMessage += "Location unavailable."
+        } else if (error.code === 3) {
+          errorMessage += "Location request timed out."
+        } else {
+          errorMessage += error.message
+        }
+        errorMessage += " Please select manually on the map."
+        this.toastService.show(errorMessage, "warning")
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+    )
   }
 
   selectLocation(latlng, popupText = `📍 Selected location: ${latlng.lat.toFixed(6)}, ${latlng.lng.toFixed(6)}`) {

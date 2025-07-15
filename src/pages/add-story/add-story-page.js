@@ -2,12 +2,13 @@ import { AddStoryView } from "./add-story-view.js"
 import { AddStoryPresenter } from "./add-story-presenter.js"
 
 export class AddStoryPage {
-  constructor(storyService, authService, toastService) {
+  constructor(storyService, authService, toastService, onStoryAddedCallback) {
     this.storyService = storyService
     this.authService = authService
     this.toastService = toastService
     this.view = null
     this.presenter = null
+    this.onStoryAddedCallback = onStoryAddedCallback // Callback for App to navigate
   }
 
   render() {
@@ -27,7 +28,7 @@ export class AddStoryPage {
                 </div>
                 
                 <div class="form-group">
-                    <label for="story-photo">Photo</label>
+                    <label for="story-photo">Photo</labeL>
                     <div class="photo-input-container">
                         <input type="file" id="story-photo" name="photo" accept="image/*" required>
                         <button type="button" id="camera-btn" class="btn btn-outline">
@@ -68,7 +69,13 @@ export class AddStoryPage {
   afterRender() {
     // Initialize View and Presenter after the DOM is ready
     this.view = new AddStoryView()
-    this.presenter = new AddStoryPresenter(this.storyService, this.authService, this.toastService, this.view)
+    this.presenter = new AddStoryPresenter(
+      this.storyService,
+      this.authService,
+      this.toastService,
+      this.view,
+      this.onStoryAddedCallback,
+    )
     this.presenter.initialize()
   }
 }
